@@ -1,0 +1,18 @@
+{
+    "name": "andaniel05/object-container-trait",
+    "authors": [
+        {
+            "name": "Andy Navarro",
+            "email": "andaniel05@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Andaniel05\\ObjectContainerTrait\\": "src/",
+            "Andaniel05\\ObjectContainerTrait\\Tests\\": "tests/"
+        }
+    }
+}
