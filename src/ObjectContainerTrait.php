@@ -7,7 +7,7 @@ SingularNameNotSpecifiedException, PluralNameNotSpecifiedException};
 use Andaniel05\ObjectContainerTrait\Exception\{TypeNotConfiguredException, NotAllowedTypeException};
 
 /**
- * Convierte a una clase en contenedora de objetos.
+ * Convierte a una clase PHP en contenedora de objetos.
  *
  * Cuando una clase usa este trait y define una configuración adecuada para el mismo
  * entonces puede realizar operaciones de tipo "add", "get", "delete" y "list" sobre
