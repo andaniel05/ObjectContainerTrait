@@ -204,6 +204,8 @@ trait ObjectContainerTrait
      */
     public function oct_get_config() : array
     {
+        $this->oct_check_initialization();
+
         return $this->oct_config;
     }
 

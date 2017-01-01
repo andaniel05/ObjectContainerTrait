@@ -115,13 +115,6 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
         $container->call_any_method();
     }
 
-    public function testOctGetConfigReturnEmptyArrayByDefault()
-    {
-        $config = $this->container->oct_get_config();
-
-        $this->assertEmpty($config);
-    }
-
     public function testConfigIsEqualToUserConfigInFirstTestCase()
     {
         $this->container->call_any_method();
@@ -470,5 +463,12 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($post1, $data['post1']);
         $this->assertSame($post2, $data['post2']);
+    }
+
+    public function testAutomaticInitializationOnOtcGetConfig()
+    {
+        $this->container->oct_get_config();
+
+        $this->assertTrue($this->container->oct_is_initialized());
     }
 }
