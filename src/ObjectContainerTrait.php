@@ -18,7 +18,7 @@ use Andaniel05\ObjectContainerTrait\Exception\{TypeNotConfiguredException, NotAl
  * Para una mayor comprensión recomendamos ver la documentación.
  *
  * @author Andy D. Navarro Taño <andaniel05@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  */
 trait ObjectContainerTrait
 {
@@ -348,5 +348,28 @@ trait ObjectContainerTrait
         if (false == isset($this->oct_data[$type])) {
             throw new TypeNotConfiguredException($type);
         }
+    }
+
+    /**
+     * Indica si una clase especificada esté entre las que puedenser contenidas.
+     *
+     * @see    v1.0.1
+     * @param  string $class Nombre de la clase sobre la que se consultada.
+     * @return boolean
+     */
+    public function oct_is_container_of(string $class) : bool
+    {
+        $this->oct_check_initialization();
+
+        $result = false;
+
+        foreach ($this->oct_config as $key => $config) {
+            if ($class == $config['class']) {
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
     }
 }

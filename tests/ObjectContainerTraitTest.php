@@ -474,4 +474,21 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($this->container->oct_is_initialized());
     }
+
+    public function testAutomaticInitializationOnIsContainerOf()
+    {
+        $this->container->oct_is_container_of(\stdClass::class);
+
+        $this->assertTrue($this->container->oct_is_initialized());
+    }
+
+    public function testOctIsContainerOfReturnFalseWhenClassIsNotConfigured()
+    {
+        $this->assertFalse($this->container->oct_is_container_of(\stdClass::class));
+    }
+
+    public function testOctIsContainerOfReturnTrueWhenClassIsConfigured()
+    {
+        $this->assertTrue($this->container->oct_is_container_of(Post::class));
+    }
 }
