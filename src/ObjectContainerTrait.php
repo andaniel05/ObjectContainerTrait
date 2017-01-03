@@ -116,7 +116,7 @@ trait ObjectContainerTrait
         $callInfo = $this->oct_get_call_info($method);
 
         if (null == $callInfo) {
-            return;
+            trigger_error('Call to undefined method '.__CLASS__.'::'.$method.'()', E_USER_ERROR);
         }
 
         $actionMethod = '';

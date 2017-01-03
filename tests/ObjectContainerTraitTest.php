@@ -48,7 +48,9 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testAutomaticInitializationOnAnyCall()
     {
-        $this->container->call_any_method();
+        try {
+            $this->container->call_any_method();
+        } catch (\Exception $e) {}
 
         $this->assertTrue($this->container->oct_is_initialized());
     }
@@ -91,8 +93,7 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testOctLoadContainerConfigWhenInstanceIfInitializedNotIsExecuted()
     {
-        // Inicializa
-        $this->container->call_any_method();
+        $this->container->oct_initialize();
 
         // Como ya está inicializado no lanza la excepción.
         $this->container->oct_load_container_config(array());
@@ -112,12 +113,12 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
                 [$this->equalTo($this->userConfig[1])]
             );
 
-        $container->call_any_method();
+        $container->oct_initialize();
     }
 
     public function testConfigIsEqualToUserConfigInFirstTestCase()
     {
-        $this->container->call_any_method();
+        $this->container->oct_initialize();
 
         $this->assertEquals(
             $this->userConfig[0],
@@ -127,7 +128,7 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testConfigAddMethodsInSecondTestCase()
     {
-        $this->container->call_any_method();
+        $this->container->oct_initialize();
 
         $methods = array(
             'methods' => array(
@@ -237,7 +238,9 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
             ->method('oct_get_call_info')
             ->with($this->equalTo('addPost'));
 
-        $container->addPost();
+        try {
+            $container->addPost();
+        } catch (\Exception $e) {}
     }
 
     public function testInvocationOfOctAddAction_WhenCallInfoReturnAddAction()
@@ -340,7 +343,7 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testOctDataHasArrayOfPosts()
     {
-        $this->container->call_any_method();
+        $this->container->oct_initialize();
 
         $data = $this->container->oct_get_data();
 
@@ -349,7 +352,7 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testOctDataHasArrayOfCategories()
     {
-        $this->container->call_any_method();
+        $this->container->oct_initialize();
 
         $data = $this->container->oct_get_data();
 
