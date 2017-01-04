@@ -1,0 +1,51 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "675a086293028fe1edfb605617da014d",
+    "packages": [
+        {
+            "name": "andaniel05/object-collection",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "D:\\Andy\\Repositorios\\ObjectCollection",
+                "reference": "3bd4ae7cbce0e4d21570308487f6335873688098"
+            },
+            "dist": {
+                "type": "tar",
+                "url": "http://localhost/satis/andaniel-projects//dist/andaniel05-object-collection-v1.0.0-4e555a.tar",
+                "reference": "3bd4ae7cbce0e4d21570308487f6335873688098",
+                "shasum": "6e887171af9d80256cb3531f84dbdf34e2906574"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Andaniel05\\ObjectCollection\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andy D. Navarro",
+                    "email": "andaniel05@gmail.com"
+                }
+            ],
+            "time": "2016-10-04T00:53:02+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.0.0"
+    },
+    "platform-dev": []
+}

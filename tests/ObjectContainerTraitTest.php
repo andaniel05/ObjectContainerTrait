@@ -3,6 +3,7 @@
 namespace Andaniel05\ObjectContainerTrait\tests;
 
 use Andaniel05\ObjectContainerTrait\ObjectContainerTrait;
+use Andaniel05\ObjectCollection\ObjectCollection;
 
 class Post {}
 
@@ -222,11 +223,6 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
         $methodInfo = $container->oct_get_call_info('getPost');
 
         $this->assertNull($methodInfo);
-    }
-
-    public function testOctGetDataReturnAnEmptyArrayByDefault()
-    {
-        $this->assertEmpty($this->container->oct_get_data());
     }
 
     public function testMagicCallInvokeToOctGetCallInfoWithSameCallData()
@@ -491,4 +487,18 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue($this->container->oct_is_container_of(Post::class));
     }
+
+    public function testAutomaticInitializationOnOctGetData()
+    {
+        $data = $this->container->oct_get_data();
+
+        $this->assertTrue($this->container->oct_is_initialized());
+    }
+
+    // public function testOctDataItemsAreInstancesOfObjectCollection()
+    // {
+    //     $data = $this->container->oct_get_data();
+
+    //     $this->assertInstanceOf(ObjectCollection::class, $data['post']);
+    // }
 }

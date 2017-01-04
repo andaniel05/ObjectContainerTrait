@@ -8,12 +8,23 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0"
+        "php": ">=7.0.0",
+        "andaniel05/object-collection": "^1.0"
     },
     "autoload": {
         "psr-4": {
             "Andaniel05\\ObjectContainerTrait\\": "src/",
             "Andaniel05\\ObjectContainerTrait\\Tests\\": "tests/"
         }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://localhost/satis/andaniel-projects/"
+        },
+        { "packagist": false }
+    ],
+    "config": {
+        "secure-http": false
     }
 }
