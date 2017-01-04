@@ -5,6 +5,7 @@ namespace Andaniel05\ObjectContainerTrait;
 use Andaniel05\ObjectContainerTrait\Exception\Config\{ClassNotSpecifiedException,
 SingularNameNotSpecifiedException, PluralNameNotSpecifiedException};
 use Andaniel05\ObjectContainerTrait\Exception\{TypeNotConfiguredException, NotAllowedTypeException};
+use Andaniel05\ObjectCollection\ObjectCollection;
 
 /**
  * Convierte a una clase PHP en contenedora de objetos.
@@ -18,7 +19,7 @@ use Andaniel05\ObjectContainerTrait\Exception\{TypeNotConfiguredException, NotAl
  * Para una mayor comprensión recomendamos ver la documentación.
  *
  * @author Andy D. Navarro Taño <andaniel05@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  */
 trait ObjectContainerTrait
 {
@@ -194,7 +195,7 @@ trait ObjectContainerTrait
         }
 
         $this->oct_config[$validConfig['singular_name']] = $validConfig;
-        $this->oct_data[$validConfig['singular_name']] = array();
+        $this->oct_data[$validConfig['singular_name']] = new ObjectCollection($validConfig['class']);
     }
 
     /**
@@ -300,7 +301,12 @@ trait ObjectContainerTrait
         $this->oct_check_initialization();
         $this->oct_check_type($type);
 
-        return $this->oct_data[$type][$id] ?? null;
+        $result = null;
+        if (isset($this->oct_data[$type][$id])) {
+            $result = $this->oct_data[$type][$id];
+        }
+
+        return $result;
     }
 
     /**
@@ -335,7 +341,7 @@ trait ObjectContainerTrait
         $this->oct_check_initialization();
         $this->oct_check_type($type);
 
-        return $this->oct_data[$type];
+        return $this->oct_data[$type]->getArray();
     }
 
     protected function oct_check_initialization()

@@ -337,24 +337,6 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->container->oct_is_initialized());
     }
 
-    public function testOctDataHasArrayOfPosts()
-    {
-        $this->container->oct_initialize();
-
-        $data = $this->container->oct_get_data();
-
-        $this->assertTrue(is_array($data['post']));
-    }
-
-    public function testOctDataHasArrayOfCategories()
-    {
-        $this->container->oct_initialize();
-
-        $data = $this->container->oct_get_data();
-
-        $this->assertTrue(is_array($data['category']));
-    }
-
     /**
      * @expectedException Andaniel05\ObjectContainerTrait\Exception\TypeNotConfiguredException
      */
@@ -495,10 +477,24 @@ class ObjectContainerTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->container->oct_is_initialized());
     }
 
-    // public function testOctDataItemsAreInstancesOfObjectCollection()
-    // {
-    //     $data = $this->container->oct_get_data();
+    public function testOctDataContainsOnlyInstancesOfObjectCollection()
+    {
+        $data = $this->container->oct_get_data();
 
-    //     $this->assertInstanceOf(ObjectCollection::class, $data['post']);
-    // }
+        $this->assertContainsOnlyInstancesOf(ObjectCollection::class, $data);
+    }
+
+    public function testTypeOfPostObjectCollectionIsPostClassName()
+    {
+        $data = $this->container->oct_get_data();
+
+        $this->assertEquals(Post::class, $data['post']->getClass());
+    }
+
+    public function testTypeOfCategoryObjectCollectionIsCategoryClassName()
+    {
+        $data = $this->container->oct_get_data();
+
+        $this->assertEquals(Category::class, $data['category']->getClass());
+    }
 }
